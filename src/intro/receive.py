@@ -10,7 +10,7 @@ def main():
     def callback(ch, method, properties, body):
         print(f" [x] Received {body}")
 
-    # telling the rabbitmq that this particular callback function should receive messages from our hello queue
+    # telling the rabbitmq that this particular callback function should receive messages from our 'hello' queue
     channel.basic_consume(queue='hello',
                         on_message_callback=callback,
                         auto_ack=True)
