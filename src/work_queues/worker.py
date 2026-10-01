@@ -10,7 +10,7 @@ channel = connection.channel()
 channel.queue_declare(queue='task_queue', durable=True, arguments={'x-queue-type': 'quorum'}) 
 # receiving the message from the queue
 def callback(ch, method, properties, body):
-    print(f" [x] Received {body.decode()}")
+    print(f"Received {body.decode()}, sleeping {body.count(b'.')} sec")
     time.sleep(body.count(b'.'))
     print(" [x] Done")
     ch.basic_ack(delivery_tag=method.delivery_tag) # manual message acknowledgment
