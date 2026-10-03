@@ -6,7 +6,7 @@ connection = pika.BlockingConnection(
     pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
-channel.exchange_declare(exchange='direct_logs', exchange_type='direct')
+channel.exchange_declare(exchange='direct_logs', exchange_type='direct') # declaring a direct exchange named 'direct_logs'
 
 result = channel.queue_declare(queue='', exclusive=True)
 queue_name = result.method.queue
@@ -18,7 +18,7 @@ if not severities:
 
 for severity in severities:
     channel.queue_bind(
-        exchange='direct_logs', queue=queue_name, routing_key=severity)
+        exchange='direct_logs', queue=queue_name, routing_key=severity) # binding queue to the exchange with the specified routing keys (severities)
 
 print(' [*] Waiting for logs. To exit press CTRL+C')
 
